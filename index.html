@@ -35,7 +35,8 @@ html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-syst
 .sets{display:flex;margin-top:6px;align-items:center;font-size:3.5vw;font-weight:700}
 .dot{width:1.1em;height:1.1em;border-radius:50%;border:3px solid currentColor}
 .dot.on{background:currentColor}
-.serve{font-size:9vh;line-height:1;opacity:0;margin-right:2vw}
+.serve{display:block;width:60px;height:60px;flex-shrink:0;opacity:0;margin-right:2vw}
+.serve svg{display:block;width:100%;height:100%}
 .serve.on{opacity:1}
 .minus{position:absolute;bottom:10px;right:10px;width:48px;height:48px;border-radius:50%;border:2px solid currentColor;background:transparent;color:inherit;font-size:28px;line-height:1;opacity:.6}
 #center{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:5;font-size:14px;color:#fff;background:#0008;padding:4px 12px;border-radius:99px;pointer-events:none;top:auto;bottom:70px}
@@ -65,8 +66,8 @@ html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-syst
 <body>
 <div id="app">
   <div id="board">
-    <div class="team" id="t0"><div class="bg"></div><div class="name"></div><div class="sc"><span class="serve" id="s0">🏐</span><div class="score">0</div></div><div class="sets"></div><div class="to"><button class="tob">⏱ TIMEOUT</button><span class="td"></span></div><button class="minus" aria-label="Togli un punto">−</button></div>
-    <div class="team" id="t1"><div class="bg"></div><div class="name"></div><div class="sc"><span class="serve" id="s1">🏐</span><div class="score">0</div></div><div class="sets"></div><div class="to"><button class="tob">⏱ TIMEOUT</button><span class="td"></span></div><button class="minus" aria-label="Togli un punto">−</button></div>
+    <div class="team" id="t0"><div class="bg"></div><div class="name"></div><div class="sc"><span class="serve" id="s0"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="bc0"><circle cx="50" cy="50" r="47"/></clipPath></defs><g clip-path="url(#bc0)"><rect width="100" height="100" fill="#ffd400"/><path d="M-10 24 Q50 2 110 26 L110 48 Q50 26 -10 48Z" fill="#1f4fb5"/><path d="M-10 60 Q50 38 110 62 L110 86 Q50 64 -10 86Z" fill="#1f4fb5"/><path d="M-5 50 Q50 34 105 52" fill="none" stroke="#0a2a66" stroke-width="2"/><path d="M32 -5 Q52 50 30 105" fill="none" stroke="#0a2a66" stroke-width="2"/><path d="M70 -5 Q50 50 72 105" fill="none" stroke="#0a2a66" stroke-width="2"/></g><circle cx="50" cy="50" r="47" fill="none" stroke="#111" stroke-width="3"/></svg></span><div class="score">0</div></div><div class="sets"></div><div class="to"><button class="tob">⏱ TIMEOUT</button><span class="td"></span></div><button class="minus" aria-label="Togli un punto">−</button></div>
+    <div class="team" id="t1"><div class="bg"></div><div class="name"></div><div class="sc"><span class="serve" id="s1"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="bc1"><circle cx="50" cy="50" r="47"/></clipPath></defs><g clip-path="url(#bc1)"><rect width="100" height="100" fill="#ffd400"/><path d="M-10 24 Q50 2 110 26 L110 48 Q50 26 -10 48Z" fill="#1f4fb5"/><path d="M-10 60 Q50 38 110 62 L110 86 Q50 64 -10 86Z" fill="#1f4fb5"/><path d="M-5 50 Q50 34 105 52" fill="none" stroke="#0a2a66" stroke-width="2"/><path d="M32 -5 Q52 50 30 105" fill="none" stroke="#0a2a66" stroke-width="2"/><path d="M70 -5 Q50 50 72 105" fill="none" stroke="#0a2a66" stroke-width="2"/></g><circle cx="50" cy="50" r="47" fill="none" stroke="#111" stroke-width="3"/></svg></span><div class="score">0</div></div><div class="sets"></div><div class="to"><button class="tob">⏱ TIMEOUT</button><span class="td"></span></div><button class="minus" aria-label="Togli un punto">−</button></div>
   </div>
   <div id="bar">
     <button id="bUndo">↩ Annulla</button>
@@ -157,9 +158,9 @@ var FONTS={sans:'',cond:'"Roboto Condensed","sans-serif-condensed","Arial Narrow
 function fit(){
   var W=window.innerWidth,H=window.innerHeight,port=H>W,sc=S.nameScale||1,f=S.nameFont||'sans',up=S.nameUp||'upper';
   var bh=$('board').clientHeight,ph=port?bh/2:bh;
-  var ss=S.scoreScale||1,pw=port?W:W/2,sp=Math.round(Math.max(50,Math.min((port?H*.2:H*.3)*ss,H*.42,pw*.95/1.75,(ph-H*.12-100)/1.1)));
+  var ss=S.scoreScale||1,pw=port?W:W/2,sp=Math.round(Math.max(50,Math.min((port?H*.2:H*.3)*ss,H*.42,pw*.95/2,(ph-H*.12-100)/1.1)));
   for(var j=0;j<2;j++){var te=$('t'+j),sc2=te.querySelector('.score'),sv=te.querySelector('.serve');
-    if(sc2._sp!==sp){sc2._sp=sp;sc2.style.fontSize=sp+'px';sv.style.fontSize=Math.round(sp*.38)+'px'}}
+    if(sc2._sp!==sp){sc2._sp=sp;sc2.style.fontSize=sp+'px';sv.style.width=sv.style.height=Math.round(sp*.62)+'px'}}
   for(var i=0;i<2;i++){
     var n=$('t'+i).querySelector('.name'),k=S.teams[i].name+'|'+W+'x'+H+'|'+bh+'|'+sc+f+up+'|'+sp;
     if(n._k===k)continue;
