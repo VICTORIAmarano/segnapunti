@@ -16,7 +16,7 @@ html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-syst
 #board{flex:1;display:flex;min-height:0}
 .team{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;cursor:pointer;min-width:0}
 .team{overflow:hidden}
-.name{font-size:9vw;font-weight:800;text-transform:uppercase;letter-spacing:.04em;max-width:96%;text-align:center;line-height:1.05;word-break:normal;overflow:hidden}
+.name{font-size:9vw;font-weight:800;text-transform:uppercase;letter-spacing:.04em;max-width:100%;text-align:center;line-height:1.05;word-break:normal;overflow:hidden}
 .bg{position:absolute;top:0;left:0;right:0;bottom:0;z-index:0;opacity:.3;background-repeat:no-repeat;background-position:center;background-size:contain}
 .name,.sets,.to{position:relative;z-index:1}
 .sc{display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
@@ -92,7 +92,7 @@ html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-syst
   <label>Colore punteggio e nome squadra A<div class="sw" id="fw0"></div></label>
   <label>Colore punteggio e nome squadra B<div class="sw" id="fw1"></div></label>
   <div class="row">
-    <label>Grandezza nomi<select id="ns"><option value="0.7">Piccola</option><option value="1">Media</option><option value="1.4">Grande</option><option value="1.8">Molto grande</option><option value="2.4">Enorme</option></select></label>
+    <label>Grandezza nomi<select id="ns"><option value="0.7">Piccola</option><option value="1">Media</option><option value="1.4">Grande</option><option value="1.8">Molto grande</option><option value="2.4">Enorme</option><option value="3.2">Gigante</option></select></label>
     <label>Stile nomi<select id="nf"><option value="sans">Normale</option><option value="cond">Condensato (più stretto)</option><option value="black">Extra nero</option><option value="serif">Con grazie</option><option value="mono">Macchina da scrivere</option></select></label>
   </div>
   <label>Grandezza punteggio<select id="ss"><option value="0.8">Piccola</option><option value="1">Media</option><option value="1.2">Grande</option><option value="1.4">Molto grande</option></select></label>
@@ -166,7 +166,7 @@ function fit(){
     n.style.fontFamily=FONTS[f]||'';
     n.style.fontWeight=f==='black'?'900':'800';
     n.style.textTransform=up==='upper'?'uppercase':'none';
-    n.style.maxHeight=Math.round(H*(port?.3:.36))+'px';
+    n.style.maxHeight=Math.round(H*(port?.3:.5))+'px';
     var px=Math.round((port?Math.min(W*.11,H*.08):Math.min(W*.09,H*.14))*sc);
     n.style.fontSize=px+'px';
     while(px>16&&(n.scrollHeight>n.clientHeight+1||n.scrollWidth>n.clientWidth+1)){px-=2;n.style.fontSize=px+'px'}
