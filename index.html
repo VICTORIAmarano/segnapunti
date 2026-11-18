@@ -39,27 +39,28 @@ html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-syst
 .serve svg{display:block;width:100%;height:100%}
 .serve.on{opacity:1}
 .minus{position:absolute;bottom:10px;right:10px;width:48px;height:48px;border-radius:50%;border:2px solid currentColor;background:transparent;color:inherit;font-size:28px;line-height:1;opacity:.6}
-#center{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:5;font-size:14px;color:#fff;background:#0008;padding:4px 12px;border-radius:99px;pointer-events:none;top:auto;bottom:70px}
+#center{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:5;font-size:14px;color:#fff;background:rgba(0,0,0,0.53);padding:4px 12px;border-radius:99px;pointer-events:none;top:auto;bottom:70px}
 #bar{display:flex;flex-wrap:wrap;justify-content:center;padding:8px;background:#000}
 #bar button,.panel button{font:inherit;font-size:15px;padding:10px 14px;border-radius:10px;border:0;background:#333;color:#fff}
 #bar button.p{background:#2563eb}
 .tv #bar{display:none}
 .tv .minus{display:none}
 #reveal{position:fixed;top:0;right:0;width:60px;height:60px;z-index:20}
-#banner{position:fixed;top:0;left:0;right:0;bottom:0;background:#000c;display:none;align-items:center;justify-content:center;flex-direction:column;z-index:30;color:#fff;text-align:center;padding:20px}
+#banner{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.80);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:30;color:#fff;text-align:center;padding:20px}
 #banner h2{font-size:7vw;margin:0 0 18px}
 #banner button{font-size:22px;padding:14px 28px;border-radius:12px;border:0;background:#22c55e;color:#fff}
-.panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#000d;display:none;z-index:40;overflow:auto;padding:16px;color:#fff}
+.panel{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.87);display:none;z-index:40;overflow:auto;padding:16px;color:#fff}
 .panel .box{max-width:520px;margin:auto;background:#1f1f1f;border-radius:16px;padding:18px}.panel .box>*{margin-bottom:12px}
 .panel h3{margin:0}
 .panel label{display:flex;flex-direction:column;font-size:14px;opacity:.9}
 .panel input[type=text],.panel input[type=number],.panel select{font:inherit;font-size:17px;padding:10px;border-radius:8px;border:1px solid #555;background:#111;color:#fff}
 .sw{display:flex;flex-wrap:wrap;align-items:center}.sw>*{margin:4px 8px 4px 0}
-.sw i{width:34px;height:34px;border-radius:50%;border:2px solid #fff6;display:inline-block}
+.sw i{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,0.40);display:inline-block}
 .sw input[type=color]{width:44px;height:38px;padding:0;border:0;background:none}
 .row{display:flex}.row>*{flex:1;margin-right:12px}.row>*:last-child{margin-right:0}
 .to>*{margin:0 6px}.sets .dot{margin-left:8px}.panel label>*{margin-top:6px}#bar button{margin:4px}
 .sw i,.tob,#bar button,.team{cursor:pointer;touch-action:manipulation;-webkit-touch-callout:none}
+.lbl{display:flex;flex-direction:column;font-size:14px;opacity:.9}.lbl>*{margin-top:6px}
 @media (orientation:portrait){#board{flex-direction:column}.score{font-size:20vh}.name{font-size:10vw}}
 </style>
 </head>
@@ -88,10 +89,10 @@ html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-syst
     <label>Squadra A<input type="text" id="n0" maxlength="20"></label>
     <label>Squadra B<input type="text" id="n1" maxlength="20"></label>
   </div>
-  <label>Colore squadra A<div class="sw" id="sw0"></div></label>
-  <label>Colore squadra B<div class="sw" id="sw1"></div></label>
-  <label>Colore punteggio e nome squadra A<div class="sw" id="fw0"></div></label>
-  <label>Colore punteggio e nome squadra B<div class="sw" id="fw1"></div></label>
+  <div class="lbl">Colore squadra A<div class="sw" id="sw0"></div></div>
+  <div class="lbl">Colore squadra B<div class="sw" id="sw1"></div></div>
+  <div class="lbl">Colore punteggio e nome squadra A<div class="sw" id="fw0"></div></div>
+  <div class="lbl">Colore punteggio e nome squadra B<div class="sw" id="fw1"></div></div>
   <div class="row">
     <label>Grandezza nomi<select id="ns"><option value="0.7">Piccola</option><option value="1">Media</option><option value="1.4">Grande</option><option value="1.8">Molto grande</option><option value="2.4">Enorme</option><option value="3.2">Gigante</option></select></label>
     <label>Stile nomi<select id="nf"><option value="sans">Normale</option><option value="cond">Condensato (più stretto)</option><option value="black">Extra nero</option><option value="serif">Con grazie</option><option value="mono">Macchina da scrivere</option></select></label>
@@ -119,7 +120,7 @@ html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-syst
 (function(){
 var PRESETS=['#e53935','#1e88e5','#43a047','#fdd835','#fb8c00','#8e24aa','#00acc1','#111111','#ffffff'];
 var KEY='segnapunti-pallavolo-v1';
-function fresh(){return{teams:[{name:'Casa',color:'#e53935',fg:'',score:0,sets:0,logo:'',to:0},{name:'Ospiti',color:'#1e88e5',fg:'',score:0,sets:0,logo:'',to:0}],serve:0,setNo:1,target:25,tie:15,bestOf:5,toDur:30,logoFit:'contain',nameScale:1,nameFont:'sans',nameUp:'upper',scoreScale:1,pending:-1,over:-1,history:[]}}
+function fresh(){return{teams:[{name:'Casa',color:'#e53935',fg:'',score:0,sets:0,logo:'',to:0},{name:'Ospiti',color:'#1e88e5',fg:'',score:0,sets:0,logo:'',to:0}],serve:0,setNo:1,target:25,tie:15,bestOf:5,toDur:30,logoFit:'contain',nameScale:1,nameFont:'cond',nameUp:'upper',scoreScale:1,pending:-1,over:-1,history:[]}}
 var S=fresh();
 try{var raw=localStorage.getItem(KEY);if(raw){S=Object.assign(fresh(),JSON.parse(raw))}}catch(e){}
 try{var lgs=JSON.parse(localStorage.getItem(KEY+'-logos')||'null');if(lgs){S.teams[0].logo=lgs[0]||'';S.teams[1].logo=lgs[1]||''}}catch(e){}
@@ -128,6 +129,7 @@ function saveLogos(){try{localStorage.setItem(KEY+'-logos',JSON.stringify([S.tea
 function snap(){var h=S.history,lg=[S.teams[0].logo,S.teams[1].logo];S.history=[];S.teams[0].logo='';S.teams[1].logo='';var c=JSON.parse(JSON.stringify(S));S.teams[0].logo=lg[0];S.teams[1].logo=lg[1];S.history=h;h.push(c);if(h.length>200)h.shift()}
 function $(id){return document.getElementById(id)}
 function lum(h){var r=parseInt(h.substr(1,2),16),g=parseInt(h.substr(3,2),16),b=parseInt(h.substr(5,2),16);return(.299*r+.587*g+.114*b)/255}
+function rgba(h,a){return 'rgba('+parseInt(h.substr(1,2),16)+','+parseInt(h.substr(3,2),16)+','+parseInt(h.substr(5,2),16)+','+a+')'}
 function fgOf(t){return t.fg||(lum(t.color)>.6?'#111':'#fff')}
 function render(){
   var need=Math.ceil(S.bestOf/2);
@@ -154,7 +156,7 @@ function layout(){
   var b=$('board');
   if(S.swapped){b.appendChild($('t0'))}else{b.appendChild($('t1'))}
 }
-var FONTS={sans:'',cond:'"Roboto Condensed","sans-serif-condensed","Arial Narrow",Impact,sans-serif',black:'"Arial Black",Arial,sans-serif',serif:'Georgia,"Droid Serif",serif',mono:'"Courier New","Droid Sans Mono",monospace'};
+var FONTS={sans:'',cond:'"DIN Condensed","Avenir Next Condensed","Roboto Condensed","sans-serif-condensed","Arial Narrow",Impact,sans-serif',black:'"Arial Black",Arial,sans-serif',serif:'Georgia,"Droid Serif",serif',mono:'"Courier New","Droid Sans Mono",monospace'};
 function fit(){
   var W=window.innerWidth,H=window.innerHeight,port=H>W,sc=S.nameScale||1,f=S.nameFont||'sans',up=S.nameUp||'upper';
   var bh=$('board').clientHeight,ph=port?bh/2:bh;
@@ -167,6 +169,7 @@ function fit(){
     n._k=k;
     n.style.fontFamily=FONTS[f]||'';
     n.style.fontWeight=f==='black'?'900':'800';
+    n.style.letterSpacing=f==='cond'?'0':'.02em';
     n.style.textTransform=up==='upper'?'uppercase':'none';
     n.style.maxHeight=Math.round(Math.max(H*.12,Math.min(H*(port?.3:.5),ph-sp*1.1-110)))+'px';
     var px=Math.round((port?Math.min(W*.11,H*.08):Math.min(W*.09,H*.14))*sc);
@@ -185,7 +188,7 @@ function check(){
     $('bt').textContent=fin?'🏆 Vince '+S.teams[w].name+'!':'Set a '+S.teams[w].name;
     $('bOk').textContent=fin?'Nuova partita':'Prossimo set';
     $('banner').style.display='flex';
-    $('banner').style.background=S.teams[w].color+'ee';
+    $('banner').style.background=rgba(S.teams[w].color,.93);
     $('banner').style.color=fgOf(S.teams[w]);
   }
 }
