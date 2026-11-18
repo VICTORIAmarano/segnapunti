@@ -20,13 +20,13 @@ html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-syst
 .bg{position:absolute;top:0;left:0;right:0;bottom:0;z-index:0;opacity:.3;background-repeat:no-repeat;background-position:center;background-size:contain}
 .name,.sets,.to{position:relative;z-index:1}
 .sc{display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
-.tc{display:inline-block;width:1.1em;height:1.1em;border-radius:50%;border:3px solid currentColor;margin:0 4px}
+.tc{display:inline-block;width:1.1em;height:1.1em;border-radius:50%;border:3px solid currentColor;margin:0;vertical-align:middle}
 .tc.on{background:currentColor}
 .score{font-size:30vh;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
 .to{display:flex;align-items:center;margin-top:4px;font-size:22px;font-weight:700}
 .tob{font:inherit;font-size:18px;font-weight:700;padding:8px 12px;border-radius:10px;border:2px solid currentColor;background:transparent;color:inherit}
 .tob:disabled{opacity:.3}
-.tv .tob{display:none}
+
 #timer{position:fixed;top:0;left:0;right:0;bottom:0;z-index:35;display:none;align-items:center;justify-content:center;flex-direction:column;text-align:center}
 #tn{margin-bottom:10px;font-size:6vw;font-weight:800;text-transform:uppercase}
 #tc{font-size:55vh;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
@@ -58,7 +58,7 @@ html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-syst
 .sw i{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,0.40);display:inline-block}
 .sw input[type=color]{width:44px;height:38px;padding:0;border:0;background:none}
 .row{display:flex}.row>*{flex:1;margin-right:12px}.row>*:last-child{margin-right:0}
-.to>*{margin:0 6px}.sets .dot{margin-left:8px}.panel label>*{margin-top:6px}#bar button{margin:4px}
+.to>*{margin:0 6px}.sets .dot{margin:0}.dw,.tw{display:inline-block;padding:10px 5px;cursor:pointer}.dw .dot{display:block}.panel label>*{margin-top:6px}#bar button{margin:4px}
 .sw i,.tob,#bar button,.team{cursor:pointer;touch-action:manipulation;-webkit-touch-callout:none}
 .lbl{display:flex;flex-direction:column;font-size:14px;opacity:.9}.lbl>*{margin-top:6px}
 @media (orientation:portrait){#board{flex-direction:column}.score{font-size:20vh}.name{font-size:10vw}}
@@ -67,8 +67,8 @@ html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-syst
 <body>
 <div id="app">
   <div id="board">
-    <div class="team" id="t0"><div class="bg"></div><div class="name"></div><div class="sc"><span class="serve" id="s0"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="bc0"><circle cx="50" cy="50" r="47"/></clipPath></defs><g clip-path="url(#bc0)"><rect width="100" height="100" fill="#ffd400"/><path d="M-10 24 Q50 2 110 26 L110 48 Q50 26 -10 48Z" fill="#1f4fb5"/><path d="M-10 60 Q50 38 110 62 L110 86 Q50 64 -10 86Z" fill="#1f4fb5"/><path d="M-5 50 Q50 34 105 52" fill="none" stroke="#0a2a66" stroke-width="2"/><path d="M32 -5 Q52 50 30 105" fill="none" stroke="#0a2a66" stroke-width="2"/><path d="M70 -5 Q50 50 72 105" fill="none" stroke="#0a2a66" stroke-width="2"/></g><circle cx="50" cy="50" r="47" fill="none" stroke="#111" stroke-width="3"/></svg></span><div class="score">0</div></div><div class="sets"></div><div class="to"><button class="tob">⏱ TIMEOUT</button><span class="td"></span></div><button class="minus" aria-label="Togli un punto">−</button></div>
-    <div class="team" id="t1"><div class="bg"></div><div class="name"></div><div class="sc"><span class="serve" id="s1"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="bc1"><circle cx="50" cy="50" r="47"/></clipPath></defs><g clip-path="url(#bc1)"><rect width="100" height="100" fill="#ffd400"/><path d="M-10 24 Q50 2 110 26 L110 48 Q50 26 -10 48Z" fill="#1f4fb5"/><path d="M-10 60 Q50 38 110 62 L110 86 Q50 64 -10 86Z" fill="#1f4fb5"/><path d="M-5 50 Q50 34 105 52" fill="none" stroke="#0a2a66" stroke-width="2"/><path d="M32 -5 Q52 50 30 105" fill="none" stroke="#0a2a66" stroke-width="2"/><path d="M70 -5 Q50 50 72 105" fill="none" stroke="#0a2a66" stroke-width="2"/></g><circle cx="50" cy="50" r="47" fill="none" stroke="#111" stroke-width="3"/></svg></span><div class="score">0</div></div><div class="sets"></div><div class="to"><button class="tob">⏱ TIMEOUT</button><span class="td"></span></div><button class="minus" aria-label="Togli un punto">−</button></div>
+    <div class="team" id="t0"><div class="bg"></div><div class="name"></div><div class="sc"><span class="serve" id="s0"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="bc0"><circle cx="50" cy="50" r="46"/></clipPath></defs><g clip-path="url(#bc0)"><rect width="100" height="100" fill="#f7931e"/><g fill="#2e3b94" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round"><path d="M40 0 C52 22 52 40 45 55 L64 58 C68 36 66 18 60 0Z"/><path transform="rotate(120 50 50)" d="M40 0 C52 22 52 40 45 55 L64 58 C68 36 66 18 60 0Z"/><path transform="rotate(240 50 50)" d="M40 0 C52 22 52 40 45 55 L64 58 C68 36 66 18 60 0Z"/></g></g><circle cx="50" cy="50" r="46" fill="none" stroke="#1a1a1a" stroke-width="6"/></svg></span><div class="score">0</div></div><div class="sets"></div><div class="to"><button class="tob">⏱ TIMEOUT</button><span class="td"></span></div><button class="minus" aria-label="Togli un punto">−</button></div>
+    <div class="team" id="t1"><div class="bg"></div><div class="name"></div><div class="sc"><span class="serve" id="s1"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="bc1"><circle cx="50" cy="50" r="46"/></clipPath></defs><g clip-path="url(#bc1)"><rect width="100" height="100" fill="#f7931e"/><g fill="#2e3b94" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round"><path d="M40 0 C52 22 52 40 45 55 L64 58 C68 36 66 18 60 0Z"/><path transform="rotate(120 50 50)" d="M40 0 C52 22 52 40 45 55 L64 58 C68 36 66 18 60 0Z"/><path transform="rotate(240 50 50)" d="M40 0 C52 22 52 40 45 55 L64 58 C68 36 66 18 60 0Z"/></g></g><circle cx="50" cy="50" r="46" fill="none" stroke="#1a1a1a" stroke-width="6"/></svg></span><div class="score">0</div></div><div class="sets"></div><div class="to"><button class="tob">⏱ TIMEOUT</button><span class="td"></span></div><button class="minus" aria-label="Togli un punto">−</button></div>
   </div>
   <div id="bar">
     <button id="bUndo">↩ Annulla</button>
@@ -142,10 +142,10 @@ function render(){
     var bg=el.querySelector('.bg'),key=(t.logo?t.logo.length+t.logo.slice(-24):'0')+'|'+(S.logoFit||'contain');
     if(bg._k!==key){bg._k=key;bg.style.backgroundImage=t.logo?'url("'+t.logo+'")':'none';bg.style.backgroundSize=S.logoFit||'contain'}
     var used=t.to||0,hh='';
-    for(var q=0;q<2;q++)hh+='<span class="tc'+(q<used?' on':'')+'"></span>';
+    for(var q=0;q<2;q++)hh+='<span class="tw" data-k="'+q+'"><span class="tc'+(q<used?' on':'')+'"></span></span>';
     el.querySelector('.td').innerHTML=hh;
     el.querySelector('.tob').disabled=used>=2;
-    var d='';for(var k=0;k<need;k++)d+='<span class="dot'+(k<t.sets?' on':'')+'"></span>';
+    var d='';for(var k=0;k<need;k++)d+='<span class="dw" data-k="'+k+'"><span class="dot'+(k<t.sets?' on':'')+'"></span></span>';
     el.querySelector('.sets').innerHTML='SET '+d;
     $('s'+i).className='serve'+(S.serve===i?' on':'');
   }
@@ -162,7 +162,7 @@ function fit(){
   var bh=$('board').clientHeight,ph=port?bh/2:bh;
   var ss=S.scoreScale||1,pw=port?W:W/2,sp=Math.round(Math.max(50,Math.min((port?H*.2:H*.3)*ss,H*.42,pw*.95/2,(ph-H*.12-100)/1.1)));
   for(var j=0;j<2;j++){var te=$('t'+j),sc2=te.querySelector('.score'),sv=te.querySelector('.serve');
-    if(sc2._sp!==sp){sc2._sp=sp;sc2.style.fontSize=sp+'px';sv.style.width=sv.style.height=Math.round(sp*.62)+'px'}}
+    if(sc2._sp!==sp){sc2._sp=sp;sc2.style.fontSize=sp+'px';sv.style.width=sv.style.height=Math.round(sp*.4)+'px'}}
   for(var i=0;i<2;i++){
     var n=$('t'+i).querySelector('.name'),k=S.teams[i].name+'|'+W+'x'+H+'|'+bh+'|'+sc+f+up+'|'+sp;
     if(n._k===k)continue;
@@ -219,12 +219,15 @@ function newMatch(silent){
   S=fresh();S.teams=n;S.target=keep.target;S.tie=keep.tie;S.bestOf=keep.bestOf;S.swapped=keep.swapped;S.toDur=keep.toDur||30;S.logoFit=keep.logoFit||'contain';S.nameScale=keep.nameScale||1;S.nameFont=keep.nameFont||'sans';S.nameUp=keep.nameUp||'upper';S.scoreScale=keep.scoreScale||1;S.pending=-1;
   $('banner').style.display='none';render();
 }
+function idx(n,root){while(n&&n!==root){var v=n.getAttribute&&n.getAttribute('data-k');if(v!==null&&v!==undefined&&v!=='')return +v;n=n.parentNode}return -1}
 function inTo(n){while(n){if(n.classList&&n.classList.contains('to'))return true;n=n.parentNode}return false}
 // tap sulle squadre
 [0,1].forEach(function(i){
   var el=$('t'+i);
   el.addEventListener('click',function(e){if(e.target.classList.contains('minus')||inTo(e.target))return;add(i,1)});
   el.querySelector('.tob').addEventListener('click',function(e){e.stopPropagation();startTO(i)});
+  el.querySelector('.sets').addEventListener('click',function(e){e.stopPropagation();var k=idx(e.target,this);if(k<0||S.pending>=0)return;snap();var t=S.teams[i];t.sets=k<t.sets?k:k+1;render()});
+  el.querySelector('.td').addEventListener('click',function(e){e.stopPropagation();var k=idx(e.target,this);if(k<0)return;snap();var t=S.teams[i];t.to=k<(t.to||0)?k:k+1;render()});
   el.querySelector('.minus').addEventListener('click',function(e){e.stopPropagation();add(i,-1)});
 });
 $('bUndo').onclick=function(){
